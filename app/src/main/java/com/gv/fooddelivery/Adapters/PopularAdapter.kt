@@ -34,7 +34,7 @@ class PopularAdapter (
     override fun onBindViewHolder(holder: PopularAdapter.PopularViewHolder, position: Int) {
         val listModel=list[position]
         holder.foodName.text=listModel.getFoodName()
-        holder.foodPrice.text=listModel.getFoodPrice()
+        holder.foodPrice.text=listModel.getFoodPrice().toString()
         listModel.getFoodImage()?.let { holder.foodImage.setImageResource(it) }
         holder.item.setOnClickListener {
             val intent= Intent(context, DetailsActivity::class.java)
@@ -47,11 +47,11 @@ class PopularAdapter (
         holder.addBtn.setOnClickListener {
             if  (sharedModel.inList(listModel)){
                 sharedModel.deleteFromCart(listModel)
-                holder.addBtn.setText("Delete Choice")
+                holder.addBtn.setText("Add To Cart")
             }
             else{
                 sharedModel.addToCart(listModel)
-                holder.addBtn.setText("Add To Cart")
+                holder.addBtn.setText("Delete Choice")
             }
         }
     }
